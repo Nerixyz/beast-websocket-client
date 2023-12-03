@@ -1,7 +1,7 @@
 const auto *jv{{field.name}} = root.if_contains("{{field.json_name}}");
 if (jv{{field.name}} == nullptr)
 {
-    {% include 'error-missing-field.tmpl' indent content %}
+    {% include 'error-missing-field.tmpl' %}
 }
 {% if field.tag %}
 const auto {{field.name}} = boost::json::try_value_to<{{field.type_name}}>(*jv{{field.name}}, {{field.tag}}());
@@ -10,6 +10,6 @@ const auto {{field.name}} = boost::json::try_value_to<{{field.type_name}}>(*jv{{
 {% endif %}
 if ({{field.name}}.has_error())
 {
-    {% include 'error-failed-to-deserialize.tmpl' indent content %}
+    {% include 'error-failed-to-deserialize.tmpl' %}
 }
 

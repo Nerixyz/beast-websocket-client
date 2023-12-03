@@ -35,6 +35,12 @@ target_link_libraries(${PROJECT_NAME}
 # See https://github.com/boostorg/beast/issues/2661
 target_compile_definitions(${PROJECT_NAME} PRIVATE BOOST_ASIO_DISABLE_CONCEPTS)
 
+get_target_property(_inc_dirs ${PROJECT_NAME} INCLUDE_DIRECTORIES)
+list(APPEND _inc_dirs ${Boost_INCLUDE_DIRS})
+list(APPEND _inc_dirs ${OPENSSL_INCLUDE_DIR})
+list(JOIN _inc_dirs ";" _inc_dir)
+add_custom_target(_ast_includes echo "@@INCLUDE_DIRS=${_inc_dir}")
+
 if (MSVC)
     # Add bigobj
     target_compile_options(${PROJECT_NAME} PRIVATE /EHsc /bigobj)

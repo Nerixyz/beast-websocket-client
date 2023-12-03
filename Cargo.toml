@@ -1,0 +1,16 @@
+[package]
+name = "clang-mo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+minijinja = { version = "1.0", features = ["loader"] }
+serde = { version = "1", features = ["derive"] }
+clang = { version = "2.0.0", features = ["clang_10_0"] }
+convert_case = "0.6.0"
+anyhow = "1.0.75"
+rayon = "1.8.0"
+
+[[bin]]
+path = "ast-rs/main.rs"
+name = "ast"

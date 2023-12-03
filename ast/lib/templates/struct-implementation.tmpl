@@ -32,26 +32,26 @@ boost::json::result_for<{{struct.full_name}}, boost::json::value>::type tag_invo
 
 {% for field in struct.members %}
     {% if field.member_type == MemberType.BASIC -%}
-    {% include 'field-basic.tmpl' indent content %}
+    {% include 'field-basic.tmpl' %}
     {%- elif field.member_type == MemberType.VECTOR -%}
-    {% include 'field-vector.tmpl' indent content %}
+    {% include 'field-vector.tmpl' %}
     {%- elif field.member_type == MemberType.OPTIONAL -%}
-    {% include 'field-optional.tmpl' indent content %}
+    {% include 'field-optional.tmpl' %}
     {%- elif field.member_type == MemberType.OPTIONAL_VECTOR -%}
-    {% include 'field-optional-vector.tmpl' indent content %}
+    {% include 'field-optional-vector.tmpl' %}
     {%- endif -%}
 {% endfor %}
 
     return {{struct.full_name}}{
 {%- for field in struct.members %}
         {% if field.member_type == MemberType.BASIC -%}
-        {% include 'initializer-basic.tmpl' indent content %}
+        {% include 'initializer-basic.tmpl' %}
         {%- elif field.member_type == MemberType.VECTOR -%}
-        {% include 'initializer-vector.tmpl' indent content %}
+        {% include 'initializer-vector.tmpl' %}
         {%- elif field.member_type == MemberType.OPTIONAL -%}
-        {% include 'initializer-optional.tmpl' indent content %}
+        {% include 'initializer-optional.tmpl' %}
         {%- elif field.member_type == MemberType.OPTIONAL_VECTOR -%}
-        {% include 'initializer-optional-vector.tmpl' indent content %}
+        {% include 'initializer-optional-vector.tmpl' %}
         {%- endif -%}
 {% endfor %}
     };
