@@ -127,7 +127,7 @@ const NotificationHandlers NOTIFICATION_HANDLERS{
         },
     },
     {
-        {"channel.chat.message", "v1"},
+        {"channel.chat.message", "1"},
         [](const auto &metadata, const auto &jv, auto &listener) {
             auto oPayload = parsePayload<
                 eventsub::payload::channel_chat_message::v1::Payload>(jv);
