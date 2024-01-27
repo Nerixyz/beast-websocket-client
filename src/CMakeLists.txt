@@ -3,6 +3,8 @@ set(SOURCE_FILES
 
     chrono.cpp
 
+    json.cpp
+
     payloads/subscription.cpp
     payloads/session-welcome.cpp
 
@@ -36,6 +38,7 @@ target_link_libraries(${PROJECT_NAME}
 
 # See https://github.com/boostorg/beast/issues/2661
 target_compile_definitions(${PROJECT_NAME} PRIVATE BOOST_ASIO_DISABLE_CONCEPTS)
+target_compile_definitions(${PROJECT_NAME} PUBLIC $<$<BOOL:{WIN32}>:BOOST_ALL_NO_LIB>)
 
 # Hack to get the include directories from Python
 get_target_property(_inc_dirs ${PROJECT_NAME} INCLUDE_DIRECTORIES)

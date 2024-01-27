@@ -3,7 +3,7 @@ cmake_policy(SET CMP0087 NEW) # evaluates generator expressions in `install(CODE
 cmake_policy(SET CMP0091 NEW) # select MSVC runtime library through `CMAKE_MSVC_RUNTIME_LIBRARY`
 include(FeatureSummary)
 
-set(TWITCH_EVENTSUB_WS_LIBRARY_TYPE "OBJECT" CACHE STRING "What type of library to build this as (defaults to OBJECT)")
+set(TWITCH_EVENTSUB_WS_LIBRARY_TYPE "STATIC" CACHE STRING "What type of library to build this as (defaults to STATIC)")
 
 list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_SOURCE_DIR}/cmake"

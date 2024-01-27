@@ -3,49 +3,6 @@ from conan.tools.files import copy
 from os import path
 import shutil
 
-BOOST_ALL_OPTIONS = [
-    "atomic",
-    "chrono",
-    "container",
-    "context",
-    "contract",
-    "coroutine",
-    "date_time",
-    "exception",
-    "fiber",
-    "filesystem",
-    "graph",
-    "graph_parallel",
-    "iostreams",
-    "json",
-    "locale",
-    "log",
-    "math",
-    "mpi",
-    "nowide",
-    "program_options",
-    "python",
-    "random",
-    "regex",
-    "serialization",
-    "stacktrace",
-    "system",
-    "test",
-    "thread",
-    "timer",
-    "type_erasure",
-    "url",
-    "wave",
-]
-
-BOOST_ENABLED_OPTIONS = {
-    "container",
-    "json",
-    "system",
-}
-
-BOOST_DISABLED_OPTIONS = [opt for opt in BOOST_ALL_OPTIONS if opt not in BOOST_ENABLED_OPTIONS]
-
 
 class Eventsub(ConanFile):
     name = "Eventsub"
@@ -56,8 +13,8 @@ class Eventsub(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     default_options = {
         "openssl*:shared": True,
+        "boost*:header_only": True,
     }
-    default_options.update({f"boost*:without_{opt}": True for opt in BOOST_DISABLED_OPTIONS})
 
     options = {}
     generators = "CMakeDeps", "CMakeToolchain"
@@ -67,7 +24,6 @@ class Eventsub(ConanFile):
         self.cpp.build.bindirs = ["bin"]
 
     def requirements(self):
-        self.output.warning(BOOST_DISABLED_OPTIONS)
         self.output.warning(self.default_options)
 
     def generate(self):
